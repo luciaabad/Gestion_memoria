@@ -1,23 +1,22 @@
-//
-// Created by Lucia Abad on 13/11/24.
-//
 #include <sys/mman.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <iostream>
 
 #define SIZE 4096
 
 int main() {
-    char *shared_memory = (char*)mmap(NULL, SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    char *shared_memory = (char*) mmap(NULL, SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
     if (shared_memory == MAP_FAILED) {
         perror("mmap");
         exit(EXIT_FAILURE);
     }
 
     pid_t pid = fork();
+    std::cin >> pid;
 
     if (pid < 0) {
         perror("fork");
